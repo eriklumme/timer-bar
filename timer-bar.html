@@ -7,7 +7,8 @@
       :host {
         display: flex;
         align-items: center;
-        width: var(--timer-bar-width, 300px);
+        width: var(--timer-bar-width, 100%);
+        max-width: var(--timer-max-width, 300px);
         font-size: var(--timer-bar-font-size, 1.2rem);
         @apply --timer-bar-theme;
       }
@@ -56,6 +57,7 @@
      * Property | Description
      * -------------|-------------
      * `--timer-bar-width` | The width of this element, including the bar and timer
+     * `--timer-bar-max-width` | The maximum width of this element
      * `--timer-bar-font-size` | The font size for the timer
      * `--timer-bar-height` | The height of the timer bar
      * `--timer-bar-background-color` | The background color of the bar
