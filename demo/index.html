@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>timer-bar demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../timer-bar.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        input {
+          margin: 4px;
+        }
+        timer-bar {
+          margin-top: 10px;
+          --timer-bar-height: 30px;
+          --timer-bar-background-color: #73befa;
+          --timer-bar-foreground-color: #3e88ff;
+        }
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic timer-bar demo</h3>
+      <demo-snippet>
+        <template>
+          <div>
+            <label for="timer-input">Set timer seconds</label>
+            <input type="range" min="0" max="20" value="10" id="timer-input" />
+          </div>
+          <div>
+            <input type="button" id="timer-start" value="Start/Stop" />
+            <input type="button" id="timer-reset" value="Reset" />
+          </div>
+          <div>
+            <label for="timer-show-bar">Show bar</label>
+            <input type="checkbox" id="timer-show-bar" checked />
+            <label for="timer-show-timer">Show timer</label>
+            <input type="checkbox" id="timer-show-timer" checked />
+          </div>
+          <timer-bar></timer-bar>
+          <p id="message"></p>
+        </template>
+      </demo-snippet>
+    </div>
+    <script>
+      let timerBar = document.querySelector('timer-bar');
+      document.getElementById('timer-input').addEventListener('change', function(e) {
+        timerBar.timerSeconds = parseInt(e.target.value);
+      });
+      document.getElementById('timer-start').addEventListener('click', function(e) {
+        if(timerBar.isRunning) {
+          timerBar.stop();
+        } else {
+          document.getElementById('message').innerText = '';
+          timerBar.start();
+        }
+      });
+      document.getElementById('timer-reset').addEventListener('click', function(e) {
+        timerBar.reset();
+      });
+      document.getElementById('timer-show-bar').addEventListener('change', function(e) {
+        timerBar.barVisible = e.target.checked;
+      });
+      document.getElementById('timer-show-timer').addEventListener('change', function(e) {
+        timerBar.timerVisible = e.target.checked;
+      });
+
+      timerBar.addEventListener('timer-end', function() {
+        document.getElementById('message').innerText = 'Timer ended!';
+      });
+    </script>
+  </body>
+</html>
