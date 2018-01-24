@@ -1,3 +1,5 @@
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/eriklumme/timer-bar)
+
 # \<timer-bar\>
 
 A bar that represents a timer counting down.
