@@ -37,6 +37,7 @@
           </div>
           <div>
             <input type="button" id="timer-start" value="Start/Stop" />
+            <input type="button" id="timer-end" value="End" />
             <input type="button" id="timer-reset" value="Reset" />
           </div>
           <div>
@@ -63,7 +64,10 @@
           timerBar.start();
         }
       });
-      document.getElementById('timer-reset').addEventListener('click', function(e) {
+      document.getElementById('timer-end').addEventListener('click', function() {
+        timerBar.end();
+      });
+      document.getElementById('timer-reset').addEventListener('click', function() {
         timerBar.reset();
       });
       document.getElementById('timer-show-bar').addEventListener('change', function(e) {

@@ -173,7 +173,7 @@
         if(this.secondsRemaining < 0) {
           this.secondsRemaining = 0;
           this.isRunning = false;
-          this.dispatchEvent(new CustomEvent('timer-end'));
+          this._notifyEnded();
         }
         this._updateBar();
 
@@ -185,12 +185,37 @@
         let percentage = this.timerSeconds === 0 ? 0 : this.secondsRemaining/this.timerSeconds*100;
         this.$.progress.style.width = `${percentage}%`;
       }
+      _notifyEnded() {
+        this.dispatchEvent(new CustomEvent('timer-end'));
+      }
+
+      /**
+       * Starts the timer
+       */
       start() {
         this.isRunning = true;
       }
+
+      /**
+       * Pauses the timer
+       */
       stop() {
         this.isRunning = false;
       }
+
+      /**
+       * Pauses and ends the timer
+       */
+      end() {
+        this.stop();
+        this.secondsRemaining = 0;
+        this._updateBar();
+        this._notifyEnded();
+      }
+
+      /**
+       * Resets the timer without changing the running state
+       */
       reset() {
         this._timerSecondsChanged(this.timerSeconds);
       }
