@@ -147,7 +147,10 @@
         }
       }
       _computeTimer(secondsRemaining) {
-        return secondsRemaining >= 10 ? secondsRemaining.toFixed(0) : secondsRemaining.toFixed(1);
+        // For numbers less than 10, we want to always show one decimal (i.e. 6.0, not 6)
+        // but also floored (9.99 -> 9.9, not 10)
+        return secondsRemaining >= 10 ? Math.floor(secondsRemaining) :
+          (Math.floor(secondsRemaining * 10) / 10).toFixed(1);
       }
       _isRunningChanged(newValue) {
         if(newValue) {
