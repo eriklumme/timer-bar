@@ -7,23 +7,25 @@
       :host {
         display: flex;
         align-items: center;
+        box-sizing: border-box;
+        margin: var(--timer-bar-margin, 8px);
         width: var(--timer-bar-width, 100%);
         max-width: var(--timer-max-width, 300px);
-        font-size: var(--timer-bar-font-size, 1.2rem);
+        font: var(--timer-bar-font-size, 1.2rem "Helvetica Neue", Helvetica, sans-serif);
         @apply --timer-bar-theme;
       }
       #bar {
         position: relative;
         width: 100%;
-        height: var(--timer-bar-height, 20px);
-        background: var(--timer-bar-background-color, gray);
+        height: var(--timer-bar-height, 24px);
+        background: var(--timer-bar-background-color, #eaeaea);
       }
       #progress {
         position: absolute;
         left: 0;
         top: 0;
         height: 100%;
-        background: var(--timer-bar-foreground-color, black);
+        background: var(--timer-bar-foreground-color, #ff503a);
       }
       #timer {
         width: var(--timer-bar-timer-width, 50px);
